@@ -12,6 +12,11 @@ class EventCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
 }
 
 extension EventCollectionViewController: UICollectionViewDataSource {
