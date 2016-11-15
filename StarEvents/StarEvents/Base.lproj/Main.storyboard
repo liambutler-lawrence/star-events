@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PHUNWARE-->
+        <!--PHUN APP-->
         <scene sceneID="pfD-1E-CCu">
             <objects>
                 <viewController storyboardIdentifier="EventCollectionViewController" id="LYV-al-R1t" customClass="EventCollectionViewController" customModule="StarEvents" customModuleProvider="target" sceneMemberID="viewController">
@@ -97,7 +97,7 @@
                             <constraint firstItem="qZF-7V-rJB" firstAttribute="top" secondItem="aLZ-0l-Zgo" secondAttribute="bottom" id="v1P-PN-Ey1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="PHUNWARE" id="anp-OS-JZP"/>
+                    <navigationItem key="navigationItem" title="PHUN APP" id="anp-OS-JZP"/>
                     <connections>
                         <outlet property="collectionView" destination="qZF-7V-rJB" id="fKR-SZ-30e"/>
                     </connections>
