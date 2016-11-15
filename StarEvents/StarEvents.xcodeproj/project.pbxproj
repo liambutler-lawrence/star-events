@@ -13,6 +13,7 @@
 		0C4641D81DDAB50400E2DF95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4641D61DDAB50400E2DF95 /* LaunchScreen.storyboard */; };
 		0C8DEFFB1DDABFA2001A1A15 /* EventCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DEFFA1DDABFA2001A1A15 /* EventCollectionViewController.swift */; };
 		0C8DEFFD1DDABFAB001A1A15 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DEFFC1DDABFAB001A1A15 /* EventDetailViewController.swift */; };
+		0C8DF0021DDAC733001A1A15 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DF0011DDAC733001A1A15 /* EventCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0C4641D91DDAB50400E2DF95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C8DEFFA1DDABFA2001A1A15 /* EventCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewController.swift; sourceTree = "<group>"; };
 		0C8DEFFC1DDABFAB001A1A15 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		0C8DF0011DDAC733001A1A15 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4641D11DDAB50400E2DF95 /* Main.storyboard */,
+				0C8DF0011DDAC733001A1A15 /* EventCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C8DEFFD1DDABFAB001A1A15 /* EventDetailViewController.swift in Sources */,
+				0C8DF0021DDAC733001A1A15 /* EventCollectionViewCell.swift in Sources */,
 				0C4641CE1DDAB50400E2DF95 /* AppDelegate.swift in Sources */,
 				0C8DEFFB1DDABFA2001A1A15 /* EventCollectionViewController.swift in Sources */,
 			);
