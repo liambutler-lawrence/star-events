@@ -13,7 +13,7 @@
         <!--PHUN APP-->
         <scene sceneID="pfD-1E-CCu">
             <objects>
-                <viewController storyboardIdentifier="EventCollectionViewController" id="LYV-al-R1t" customClass="EventCollectionViewController" customModule="StarEvents" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="LYV-al-R1t" customClass="EventCollectionViewController" customModule="StarEvents" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aLZ-0l-Zgo"/>
                         <viewControllerLayoutGuide type="bottom" id="YCS-pG-2aX"/>
