@@ -15,9 +15,11 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
     override func awakeFromNib() {
         let smallMargin: CGFloat = 30
         let largeMargin: CGFloat = 60
-        layoutMargins = UIEdgeInsets(top: largeMargin, left: smallMargin, bottom: smallMargin, right: smallMargin)
+        contentView.layoutMargins = UIEdgeInsets(top: largeMargin, left: smallMargin, bottom: smallMargin, right: smallMargin)
     }
 }

@@ -30,6 +30,23 @@ extension EventCollectionViewController: UICollectionViewDataSource {
         cell.locationLabel.text = "Columbus, OH"
         cell.descriptionLabel.text = "This is an event"
         
+        cell.backgroundImageView.image = #imageLiteral(resourceName: "EventDefaultImage")
+        
         return cell
+    }
+}
+
+extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellHeight: CGFloat = 225
+        let collectionViewWidth = view.bounds.width
+        
+        switch view.traitCollection.horizontalSizeClass {
+        case .compact, .unspecified:
+            return CGSize(width: collectionViewWidth, height: cellHeight)
+        case .regular:
+            return CGSize(width: collectionViewWidth / 2, height: cellHeight)
+        }
     }
 }
