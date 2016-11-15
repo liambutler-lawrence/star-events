@@ -38,6 +38,15 @@ extension EventCollectionViewController: UICollectionViewDataSource {
 
 extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewControllerIdentifier = String(describing: EventDetailViewController.self)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let detailViewController = mainStoryboard.instantiateViewController(withIdentifier: detailViewControllerIdentifier) as? EventDetailViewController
+            else { fatalError("Could not instantiate \(EventCollectionViewCell.self)") }
+        
+        navigationController!.pushViewController(detailViewController, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellHeight: CGFloat = 225
         let collectionViewWidth = view.bounds.width
