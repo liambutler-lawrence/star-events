@@ -11,6 +11,10 @@ import CoreData
 
 class EventCollectionViewController: UIViewController {
     
+    // The NSFetchedResultsController delegate methods were designed for UITableView, which provides procedural-style "beginUpdates" and "endUpdates" methods that map directly to "controllerWillChangeContent" and "controllerDidChangeContent"
+    // UICollectionView uses a closure-based pattern instead ("performBatchUpdates"), so we have to store all pending updates reported by the delegate methods and then perform the necessary updates all at once
+    fileprivate var pendingUpdates = [() -> ()]()
+    
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
     fileprivate let fetchedResultsController: NSFetchedResultsController<StarEvent> = {
@@ -154,6 +158,33 @@ extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionViewWidth, height: cellHeight)
         case .regular:
             return CGSize(width: collectionViewWidth / 2, height: cellHeight)
+        }
+    }
+}
+
+extension EventCollectionViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        let operation: () -> ()
+        
+        switch type {
+        case .delete:
+            operation = { self.collectionView.deleteItems(at: [indexPath!]) }
+        case .insert:
+            operation = { self.collectionView.insertItems(at: [newIndexPath!]) }
+        case .move:
+            operation = { self.collectionView.moveItem(at: indexPath!, to: newIndexPath!) }
+        case .update:
+            operation = { self.collectionView.reloadItems(at: [newIndexPath!]) }
+        }
+        
+        pendingUpdates.append(operation)
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView.performBatchUpdates({
+            self.pendingUpdates.forEach { $0() }
+        }) { _ in
+            self.pendingUpdates.removeAll()
         }
     }
 }
