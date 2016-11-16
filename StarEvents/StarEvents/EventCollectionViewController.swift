@@ -11,7 +11,7 @@ import CoreData
 
 class EventCollectionViewController: UIViewController {
     
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
     fileprivate let fetchedResultsController: NSFetchedResultsController<StarEvent> = {
         let fetchRequest = NSFetchRequest<StarEvent>(entityName: String(describing: StarEvent.self))
@@ -33,11 +33,67 @@ class EventCollectionViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        fetchedResultsController.delegate = self
+        
         do {
             try fetchedResultsController.performFetch()
         } catch {
             fatalError("Could not fetch events from Core Data")
         }
+        
+        let jsonURL = URL(string: "https://raw.githubusercontent.com/phunware/dev-interview-homework/master/feed.json")!
+        let jsonDataTask = URLSession.shared.dataTask(with: jsonURL) { (data, response, error) -> Void in
+            do {
+                guard
+                    let data = data,
+                    let jsonEvents = try JSONSerialization.jsonObject(with: data) as? [[String: Any]]
+                    else { fatalError() }
+                
+                for jsonEvent in jsonEvents {
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+                    
+                    guard
+                        let id = jsonEvent["id"] as? Int16,
+                        
+                        let title = jsonEvent["title"] as? String,
+                        let eventDescription = jsonEvent["description"] as? String,
+                        
+                        let dateString = jsonEvent["date"] as? String,
+                        let timestampString = jsonEvent["timestamp"] as? String,
+                        let date = dateFormatter.date(from: dateString),
+                        let timestamp = dateFormatter.date(from: timestampString),
+                        
+                        let locationLine1 = jsonEvent["locationline1"] as? String,
+                        let locationLine2 = jsonEvent["locationline2"] as? String,
+                        
+                        let phone = jsonEvent["phone"] as? String?
+                    
+                        else { continue }
+                    
+                    let event: StarEvent = NSEntityDescription.insertNewTypedObject(into: CoreDataContext.shared)
+
+                    event.id = id
+                    event.title = title
+                    event.eventDescription = eventDescription
+                    event.date = date
+                    event.timestamp = timestamp
+                    event.locationLine1 = locationLine1
+                    event.locationLine2 = locationLine2
+                    event.phone = phone
+                    
+                    if let imageURLString = jsonEvent["image"] as? String,
+                        let imageURL = NSURL(string: imageURLString) {
+                        event.imageName = imageURL.lastPathComponent
+                    }
+                }
+            } catch {
+                fatalError()
+            }
+        }
+        jsonDataTask.resume()
+        
     }
 }
 
