@@ -7,33 +7,70 @@
 //
 
 import UIKit
+import CoreData
 
 class EventCollectionViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
+    fileprivate let fetchedResultsController: NSFetchedResultsController<StarEvent> = {
+        let fetchRequest = NSFetchRequest<StarEvent>(entityName: String(describing: StarEvent.self))
+        let sortKey = "timestamp"
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortKey, ascending: true)]
+        
+        return NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: CoreDataContext.shared,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+    }()
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    override func viewDidLoad() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Could not fetch events from Core Data")
+        }
+    }
 }
 
 extension EventCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        let eventCount = fetchedResultsController.fetchedObjects?.count ?? 0
+        return eventCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let events = fetchedResultsController.fetchedObjects
+            else { fatalError("Cannot retrieve fetched event at index \(indexPath.item)") }
+        let event = events[indexPath.item]
+        
         let cellIdentifier = String(describing: EventCollectionViewCell.self)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? EventCollectionViewCell
             else { fatalError("Could not dequeue \(EventCollectionViewCell.self)") }
         
-        cell.dateLabel.text = "today"
-        cell.titleLabel.text = "Hello"
-        cell.locationLabel.text = "Columbus, OH"
-        cell.descriptionLabel.text = "This is an event"
+        // Create composite location string
+        let eventLocation = "\(event.locationLine1), \(event.locationLine2)"
+        
+        // Create formatted date string
+        let dateFormatter = DateFormatter()
+        dateFormatter.amSymbol = "am" // By default, "AM" and "PM" are used.
+        dateFormatter.pmSymbol = "pm"
+        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mma"
+        let eventDate = dateFormatter.string(from: event.date)
+        
+        cell.dateLabel.text = eventDate
+        cell.titleLabel.text = event.title
+        cell.locationLabel.text = eventLocation
+        cell.descriptionLabel.text = event.eventDescription
         
         cell.backgroundImageView.image = #imageLiteral(resourceName: "EventDefaultImage")
         
