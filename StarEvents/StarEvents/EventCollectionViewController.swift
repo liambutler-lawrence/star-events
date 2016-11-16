@@ -76,6 +76,14 @@ class EventCollectionViewController: UIViewController {
                     
                         else { continue }
                     
+                    let fetchRequest = NSFetchRequest<StarEvent>(entityName: String(describing: StarEvent.self))
+                    fetchRequest.predicate = NSPredicate(format: "id = %d", id)
+                    
+                    let existingEvents = try CoreDataContext.shared.fetch(fetchRequest)
+                    existingEvents.forEach {
+                        CoreDataContext.shared.delete($0)
+                    }
+                    
                     let event: StarEvent = NSEntityDescription.insertNewTypedObject(into: CoreDataContext.shared)
 
                     event.id = id
@@ -92,6 +100,8 @@ class EventCollectionViewController: UIViewController {
                         event.imageName = imageURL.lastPathComponent
                     }
                 }
+                
+                try CoreDataContext.shared.save()
             } catch {
                 fatalError()
             }
@@ -163,6 +173,10 @@ extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension EventCollectionViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        pendingUpdates.removeAll()
+    }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         let operation: () -> ()
