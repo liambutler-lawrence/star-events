@@ -130,14 +130,98 @@
                     <view key="view" contentMode="scaleToFill" id="V0C-Gr-Dmc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="M5d-tV-sdf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="3zW-Bd-wzg"/>
+                                </constraints>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-2T-6st">
+                                <rect key="frame" x="0.0" y="200" width="375" height="467"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-pZ-tZB">
+                                        <rect key="frame" x="20" y="0.0" width="335" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJc-1Q-cKJ">
+                                        <rect key="frame" x="20" y="51" width="335" height="18"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="BodyLabel">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-Sz-WdC">
+                                        <rect key="frame" x="20" y="17" width="335" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lJc-1Q-cKJ" firstAttribute="trailing" secondItem="bhi-Sz-WdC" secondAttribute="trailing" id="0L7-nr-OGa"/>
+                                    <constraint firstItem="bhi-Sz-WdC" firstAttribute="leading" secondItem="ylU-pZ-tZB" secondAttribute="leading" id="2cT-i3-zic"/>
+                                    <constraint firstItem="lJc-1Q-cKJ" firstAttribute="top" secondItem="bhi-Sz-WdC" secondAttribute="bottom" constant="10" id="3YH-nw-0Ue"/>
+                                    <constraint firstItem="ylU-pZ-tZB" firstAttribute="centerX" secondItem="oWj-2T-6st" secondAttribute="centerX" id="7IA-zd-tRv"/>
+                                    <constraint firstItem="ylU-pZ-tZB" firstAttribute="top" secondItem="oWj-2T-6st" secondAttribute="top" id="AX8-SH-xGJ"/>
+                                    <constraint firstItem="bhi-Sz-WdC" firstAttribute="trailing" secondItem="ylU-pZ-tZB" secondAttribute="trailing" id="GUU-gT-jun"/>
+                                    <constraint firstAttribute="bottom" secondItem="lJc-1Q-cKJ" secondAttribute="bottom" constant="20" symbolic="YES" id="Rbi-rQ-GSz">
+                                        <variation key="widthClass=compact" constant="20"/>
+                                        <variation key="widthClass=regular" constant="50"/>
+                                    </constraint>
+                                    <constraint firstItem="lJc-1Q-cKJ" firstAttribute="leading" secondItem="bhi-Sz-WdC" secondAttribute="leading" id="gW7-uc-iSD"/>
+                                    <constraint firstAttribute="trailing" secondItem="ylU-pZ-tZB" secondAttribute="trailing" constant="20" symbolic="YES" id="j0O-6B-YWF">
+                                        <variation key="widthClass=compact" constant="20"/>
+                                        <variation key="widthClass=regular" constant="50"/>
+                                    </constraint>
+                                    <constraint firstItem="ylU-pZ-tZB" firstAttribute="leading" secondItem="oWj-2T-6st" secondAttribute="leading" constant="20" symbolic="YES" id="ped-6M-gb2">
+                                        <variation key="widthClass=compact" constant="20"/>
+                                        <variation key="widthClass=regular" constant="50"/>
+                                    </constraint>
+                                    <constraint firstItem="bhi-Sz-WdC" firstAttribute="top" secondItem="ylU-pZ-tZB" secondAttribute="bottom" constant="5" id="q9a-Pv-7ax"/>
+                                    <constraint firstItem="ylU-pZ-tZB" firstAttribute="width" secondItem="oWj-2T-6st" secondAttribute="width" id="w4E-NN-mrq">
+                                        <variation key="widthClass=compact" constant="-40"/>
+                                        <variation key="widthClass=regular" constant="-100"/>
+                                    </constraint>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="M5d-tV-sdf" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="3fs-Cl-edi"/>
+                            <constraint firstItem="oWj-2T-6st" firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="bottom" id="5A6-RI-0Ic"/>
+                            <constraint firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="top" id="DKh-uY-2fz"/>
+                            <constraint firstAttribute="trailing" secondItem="oWj-2T-6st" secondAttribute="trailing" id="PnM-mM-aga"/>
+                            <constraint firstAttribute="trailing" secondItem="M5d-tV-sdf" secondAttribute="trailing" id="XY4-Xr-Gyl"/>
+                            <constraint firstItem="KFs-vg-7oa" firstAttribute="top" secondItem="oWj-2T-6st" secondAttribute="bottom" id="a7k-A6-Vmg"/>
+                            <constraint firstItem="oWj-2T-6st" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="gku-cj-Jga"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gJC-kv-R6z"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem key="navigationItem" id="gJC-kv-R6z">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="mAc-3K-46P">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="tBi-O6-JWz" id="hPr-d0-YQg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bodyLabel" destination="lJc-1Q-cKJ" id="gfj-y5-OcK"/>
+                        <outlet property="dateLabel" destination="ylU-pZ-tZB" id="qxp-Nu-jd5"/>
+                        <outlet property="headerImageView" destination="M5d-tV-sdf" id="GdB-Iy-y8E"/>
+                        <outlet property="titleLabel" destination="bhi-Sz-WdC" id="TD6-nF-Xdq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fx9-le-7f3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="-233"/>
+            <point key="canvasLocation" x="1294" y="-233"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7iX-fz-qwD">
@@ -158,4 +242,7 @@
             <point key="canvasLocation" x="-460" y="-233"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="EventDefaultImage" width="360" height="213"/>
+    </resources>
 </document>

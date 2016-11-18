@@ -25,7 +25,7 @@ extension StarEvent {
     @NSManaged var locationLine1: String
     @NSManaged var locationLine2: String
     
-    // Image is not stored in Core Data, but we want change notifications to be propogated when the image is updated
+    // Image is not stored in Core Data, but we want change notifications to be propagated when the image is updated
     // We can update this property whenever we update the image to trigger change notifications
     @NSManaged var imageLastUpdated: Date?
 }
