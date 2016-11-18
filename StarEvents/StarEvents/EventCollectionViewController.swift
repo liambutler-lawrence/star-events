@@ -68,14 +68,9 @@ extension EventCollectionViewController: UICollectionViewDataSource {
         // Create composite location string
         let eventLocation = "\(event.locationLine1), \(event.locationLine2)"
         
-        // Create formatted date string
-        let dateFormatter = DateFormatter()
-        dateFormatter.amSymbol = "am" // By default, "AM" and "PM" are used.
-        dateFormatter.pmSymbol = "pm"
-        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mma"
-        let eventDate = dateFormatter.string(from: event.date)
+        let viewModel = EventViewModel()
         
-        cell.dateLabel.text = eventDate
+        cell.dateLabel.text = viewModel.format(event.date)
         cell.titleLabel.text = event.title
         cell.locationLabel.text = eventLocation
         cell.descriptionLabel.text = event.eventDescription
@@ -88,10 +83,15 @@ extension EventCollectionViewController: UICollectionViewDataSource {
 extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let events = fetchedResultsController.fetchedObjects
+            else { fatalError("Cannot retrieve fetched event at index \(indexPath.item)") }
+        
         let detailViewControllerIdentifier = String(describing: EventDetailViewController.self)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
         guard let detailViewController = mainStoryboard.instantiateViewController(withIdentifier: detailViewControllerIdentifier) as? EventDetailViewController
             else { fatalError("Could not instantiate \(EventCollectionViewCell.self)") }
+        detailViewController.event = events[indexPath.item]
         
         navigationController!.pushViewController(detailViewController, animated: true)
     }
