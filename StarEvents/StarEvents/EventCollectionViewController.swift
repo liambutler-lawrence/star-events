@@ -116,6 +116,11 @@ extension EventCollectionViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        // iOS 8 bug: this method is occasionally called with invalid NSFetchedResultsChangeType '0' (the valid cases are in 1...4)
+        // In this scenario, Swift executes the first declared case in the switch statement, which causes unexpected behavior
+        // Workaround: explicity guard against this invalid case
+        guard type.rawValue > 0 else { return }
+        
         let operation: () -> ()
         
         switch type {
@@ -126,7 +131,7 @@ extension EventCollectionViewController: NSFetchedResultsControllerDelegate {
         case .move:
             operation = { self.collectionView.moveItem(at: indexPath!, to: newIndexPath!) }
         case .update:
-            operation = { self.collectionView.reloadItems(at: [newIndexPath!]) }
+            operation = { self.collectionView.reloadItems(at: [indexPath!]) }
         }
         
         pendingUpdates.append(operation)
