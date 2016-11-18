@@ -29,10 +29,18 @@ class EventDetailViewController: UIViewController {
         dateLabel.text = viewModel.format(event.date)
         
         loadEventBody()
-
+        loadHeaderImage()
+    }
+    
+    private func loadHeaderImage() {
         if let image = event.image {
             headerImageView.image = image
         }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = headerImageView.bounds
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
+        headerImageView.layer.mask = gradientLayer
     }
     
     private func loadEventBody() {
