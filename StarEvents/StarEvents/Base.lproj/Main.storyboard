@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PHUN APP-->
+        <!--StarEvents-->
         <scene sceneID="pfD-1E-CCu">
             <objects>
                 <viewController storyboardIdentifier="EventCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="LYV-al-R1t" customClass="EventCollectionViewController" customModule="StarEvents" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,37 +39,37 @@
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zjc-pu-VIe">
+                                                <imageView userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zjc-pu-VIe">
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBC-2t-bCH">
-                                                    <rect key="frame" x="8" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBC-2t-bCH">
+                                                    <rect key="frame" x="8" y="8" width="51" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNy-OL-QuV">
-                                                    <rect key="frame" x="8" y="39" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNy-OL-QuV">
+                                                    <rect key="frame" x="8" y="25" width="92" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXx-Eu-K5M">
-                                                    <rect key="frame" x="8" y="101" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DescriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXx-Eu-K5M">
+                                                    <rect key="frame" x="8" y="92" width="116" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBx-8i-VYu">
-                                                    <rect key="frame" x="8" y="70" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LocationLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBx-8i-VYu">
+                                                    <rect key="frame" x="8" y="59" width="101" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="tXx-Eu-K5M" firstAttribute="top" secondItem="bBx-8i-VYu" secondAttribute="bottom" constant="10" id="39W-Rw-Sv7"/>
+                                            <constraint firstItem="tXx-Eu-K5M" firstAttribute="top" secondItem="bBx-8i-VYu" secondAttribute="bottom" constant="15" id="39W-Rw-Sv7"/>
                                             <constraint firstAttribute="trailing" secondItem="zjc-pu-VIe" secondAttribute="trailing" id="3zv-zu-1Tc"/>
                                             <constraint firstItem="zjc-pu-VIe" firstAttribute="top" secondItem="Hht-Me-0T0" secondAttribute="top" id="66i-HD-Zib"/>
                                             <constraint firstItem="tXx-Eu-K5M" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leadingMargin" id="Dld-57-LEl"/>
@@ -80,7 +80,7 @@
                                             <constraint firstItem="iBC-2t-bCH" firstAttribute="top" secondItem="Hht-Me-0T0" secondAttribute="topMargin" id="Q4H-Nl-jWV"/>
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="iBC-2t-bCH" secondAttribute="trailing" id="WCA-r1-xb8"/>
                                             <constraint firstItem="bBx-8i-VYu" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leadingMargin" id="iTr-Et-aEj"/>
-                                            <constraint firstItem="VNy-OL-QuV" firstAttribute="top" secondItem="iBC-2t-bCH" secondAttribute="bottom" constant="10" id="icP-S1-SJ9"/>
+                                            <constraint firstItem="VNy-OL-QuV" firstAttribute="top" secondItem="iBC-2t-bCH" secondAttribute="bottom" constant="5" id="icP-S1-SJ9"/>
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="tXx-Eu-K5M" secondAttribute="trailing" id="jVU-mG-g4q"/>
                                             <constraint firstAttribute="bottom" secondItem="zjc-pu-VIe" secondAttribute="bottom" id="sbk-ka-xkU"/>
                                             <constraint firstItem="bBx-8i-VYu" firstAttribute="top" secondItem="VNy-OL-QuV" secondAttribute="bottom" constant="10" id="tf2-aQ-LJL"/>
@@ -110,7 +110,7 @@
                             <constraint firstItem="qZF-7V-rJB" firstAttribute="top" secondItem="aLZ-0l-Zgo" secondAttribute="bottom" id="v1P-PN-Ey1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="PHUN APP" id="anp-OS-JZP"/>
+                    <navigationItem key="navigationItem" title="StarEvents" id="anp-OS-JZP"/>
                     <connections>
                         <outlet property="collectionView" destination="qZF-7V-rJB" id="fKR-SZ-30e"/>
                     </connections>
