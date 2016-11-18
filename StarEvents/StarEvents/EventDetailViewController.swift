@@ -28,6 +28,14 @@ class EventDetailViewController: UIViewController {
         titleLabel.text = event.title
         dateLabel.text = viewModel.format(event.date)
         
+        loadEventBody()
+
+        if let image = event.image {
+            headerImageView.image = image
+        }
+    }
+    
+    private func loadEventBody() {
         let bodyComponents = [
             event.locationLine1,
             event.locationLine2,
@@ -41,10 +49,6 @@ class EventDetailViewController: UIViewController {
         let attributedEventBody = NSAttributedString(string: eventBody, attributes: [NSParagraphStyleAttributeName: bodyStyle])
         
         bodyLabel.attributedText = attributedEventBody
-
-        if let image = event.image {
-            headerImageView.image = image
-        }
     }
     
     @IBOutlet private weak var headerImageView: UIImageView!
@@ -53,6 +57,13 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var bodyLabel: UILabel!
 
     @IBAction private func shareButtonTapped(_ sender: UIBarButtonItem) {
-        print("PRESENT SHARE SHEET")
+        let sharedText = "\(event.title): \(event.eventDescription)"
+        let shareViewController = UIActivityViewController(activityItems: [sharedText], applicationActivities: nil)
+        
+        if let sharePopoverController = shareViewController.popoverPresentationController {
+            sharePopoverController.barButtonItem = sender
+        }
+        
+        present(shareViewController, animated: true, completion: nil)
     }
 }
