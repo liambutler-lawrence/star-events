@@ -110,7 +110,9 @@
                             <constraint firstItem="qZF-7V-rJB" firstAttribute="top" secondItem="aLZ-0l-Zgo" secondAttribute="bottom" id="v1P-PN-Ey1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="StarEvents" id="anp-OS-JZP"/>
+                    <navigationItem key="navigationItem" title="StarEvents" id="anp-OS-JZP">
+                        <barButtonItem key="backBarButtonItem" title="  " id="LXm-sY-9dZ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="qZF-7V-rJB" id="fKR-SZ-30e"/>
                     </connections>
@@ -186,10 +188,6 @@
                                         <variation key="widthClass=regular" constant="50"/>
                                     </constraint>
                                     <constraint firstItem="bhi-Sz-WdC" firstAttribute="top" secondItem="ylU-pZ-tZB" secondAttribute="bottom" constant="5" id="q9a-Pv-7ax"/>
-                                    <constraint firstItem="ylU-pZ-tZB" firstAttribute="width" secondItem="oWj-2T-6st" secondAttribute="width" id="w4E-NN-mrq">
-                                        <variation key="widthClass=compact" constant="-40"/>
-                                        <variation key="widthClass=regular" constant="-100"/>
-                                    </constraint>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="tBi-O6-JWz" id="a6E-eR-k4m"/>
