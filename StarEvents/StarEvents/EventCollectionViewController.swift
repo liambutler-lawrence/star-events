@@ -11,9 +11,12 @@ import CoreData
 
 class EventCollectionViewController: UIViewController {
     
+    // MARK: Variables
+    
     // The NSFetchedResultsController delegate methods were designed for UITableView, which provides procedural-style "beginUpdates" and "endUpdates" methods that map directly to "controllerWillChangeContent" and "controllerDidChangeContent"
     // UICollectionView uses a closure-based pattern instead ("performBatchUpdates"), so we have to store all pending updates reported by the delegate methods and then perform the necessary updates all at once
     fileprivate var pendingUpdates = [() -> ()]()
+    fileprivate weak var spinner: UIActivityIndicatorView?
     
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
@@ -29,6 +32,8 @@ class EventCollectionViewController: UIViewController {
             cacheName: nil
         )
     }()
+    
+    // MARK: View Controller
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -46,6 +51,44 @@ class EventCollectionViewController: UIViewController {
         }
         
         EventDataManager().loadEvents()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let events = fetchedResultsController.fetchedObjects
+            else { fatalError("Cannot retrieve fetched events") }
+        
+        events.isEmpty ? addSpinner() : removeSpinner()
+     }
+    
+    // MARK: Spinner
+    
+    fileprivate func addSpinner() {
+        guard self.spinner == nil else { return }
+        
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        view.addSubview(spinner)
+        
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        if #available(iOS 9.0, *) {
+            NSLayoutConstraint.activate([
+                spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+                ])
+        } else {
+            NSLayoutConstraint.activate([.centerX, .centerY].map {
+                NSLayoutConstraint(item: spinner, attribute: $0, relatedBy: .equal, toItem: view, attribute: $0, multiplier: 1, constant: 0)
+            })
+        }
+        
+        spinner.startAnimating()
+        self.spinner = spinner
+    }
+    
+    fileprivate func removeSpinner() {
+        guard let spinner = self.spinner else { return }
+        spinner.stopAnimating()
+        spinner.removeFromSuperview()
     }
 }
 
@@ -137,6 +180,11 @@ extension EventCollectionViewController: NSFetchedResultsControllerDelegate {
         pendingUpdates.append(operation)
     }
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard let events = fetchedResultsController.fetchedObjects
+            else { fatalError("Cannot retrieve fetched events") }
+        
+        events.isEmpty ? addSpinner() : removeSpinner()
+        
         collectionView.performBatchUpdates({
             self.pendingUpdates.forEach { $0() }
         }) { _ in
