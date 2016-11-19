@@ -138,7 +138,7 @@
                                 </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-2T-6st">
-                                <rect key="frame" x="0.0" y="173" width="375" height="494"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-pZ-tZB">
                                         <rect key="frame" x="20" y="0.0" width="335" height="12"/>
@@ -196,12 +196,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="M5d-tV-sdf" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="3fs-Cl-edi"/>
+                            <constraint firstItem="oWj-2T-6st" firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="bottom" constant="-30" id="5A6-RI-0Ic"/>
                             <constraint firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="top" id="DKh-uY-2fz"/>
                             <constraint firstAttribute="trailing" secondItem="oWj-2T-6st" secondAttribute="trailing" id="PnM-mM-aga"/>
                             <constraint firstAttribute="trailing" secondItem="M5d-tV-sdf" secondAttribute="trailing" id="XY4-Xr-Gyl"/>
                             <constraint firstItem="KFs-vg-7oa" firstAttribute="top" secondItem="oWj-2T-6st" secondAttribute="bottom" id="a7k-A6-Vmg"/>
                             <constraint firstItem="oWj-2T-6st" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="gku-cj-Jga"/>
-                            <constraint firstItem="bhi-Sz-WdC" firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="bottom" constant="-10" id="lDq-P4-b2T"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gJC-kv-R6z">
