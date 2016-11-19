@@ -13,6 +13,8 @@ class EventDetailViewController: UIViewController, UIScrollViewDelegate {
     weak var event: StarEvent!
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let navigationBar = navigationController!.navigationBar
         navigationBar.barTintColor = .clear
         navigationBar.tintColor = .white
@@ -22,9 +24,9 @@ class EventDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         let viewModel = EventViewModel()
         
-        navigationItem.title = event.title
         titleLabel.text = event.title
         dateLabel.text = viewModel.format(event.date)
         
@@ -44,14 +46,26 @@ class EventDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let newScrollViewOffset = scrollView.contentOffset.y
+        let triggerPoint: CGFloat = 45
         
-        if previousScrollViewYOffset < 50 && 50 <= newScrollViewOffset {
-            print("show")
-        } else if newScrollViewOffset <= 50 && 50 < previousScrollViewYOffset {
-            print("hide")
+        if previousScrollViewYOffset < newScrollViewOffset
+            && (previousScrollViewYOffset...newScrollViewOffset).contains(triggerPoint) {
+            setHeaderTitle(hidden: false)
+        } else if newScrollViewOffset < previousScrollViewYOffset
+            && (newScrollViewOffset...previousScrollViewYOffset).contains(triggerPoint) {
+            setHeaderTitle(hidden: true)
         }
         
         previousScrollViewYOffset = newScrollViewOffset
+    }
+    
+    private func setHeaderTitle(hidden titleHidden: Bool) {
+        let fadeAnimation = CATransition()
+        fadeAnimation.duration = 0.5
+        fadeAnimation.type = kCATransitionFade
+        navigationController!.navigationBar.layer.add(fadeAnimation, forKey: "fadeTitleTransition")
+        
+        self.navigationItem.title = titleHidden ? "" : event.title
     }
     
     private func loadHeaderImage() {
