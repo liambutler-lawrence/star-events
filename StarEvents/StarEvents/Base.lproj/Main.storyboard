@@ -49,19 +49,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNy-OL-QuV">
-                                                    <rect key="frame" x="8" y="25" width="92" height="24"/>
+                                                    <rect key="frame" x="8" y="25" width="184" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DescriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXx-Eu-K5M">
-                                                    <rect key="frame" x="8" y="92" width="116" height="18"/>
+                                                    <rect key="frame" x="8" y="92" width="184" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LocationLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBx-8i-VYu">
-                                                    <rect key="frame" x="8" y="59" width="101" height="18"/>
+                                                    <rect key="frame" x="8" y="59" width="184" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -73,15 +73,15 @@
                                             <constraint firstAttribute="trailing" secondItem="zjc-pu-VIe" secondAttribute="trailing" id="3zv-zu-1Tc"/>
                                             <constraint firstItem="zjc-pu-VIe" firstAttribute="top" secondItem="Hht-Me-0T0" secondAttribute="top" id="66i-HD-Zib"/>
                                             <constraint firstItem="tXx-Eu-K5M" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leadingMargin" id="Dld-57-LEl"/>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bBx-8i-VYu" secondAttribute="trailing" id="GKT-tx-grO"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="bBx-8i-VYu" secondAttribute="trailing" id="GKT-tx-grO"/>
                                             <constraint firstItem="iBC-2t-bCH" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leadingMargin" id="GRk-6d-Xoo"/>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="VNy-OL-QuV" secondAttribute="trailing" id="Hce-qj-Pqr"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="VNy-OL-QuV" secondAttribute="trailing" id="Hce-qj-Pqr"/>
                                             <constraint firstItem="zjc-pu-VIe" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leading" id="HkT-Xn-AB5"/>
                                             <constraint firstItem="iBC-2t-bCH" firstAttribute="top" secondItem="Hht-Me-0T0" secondAttribute="topMargin" id="Q4H-Nl-jWV"/>
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="iBC-2t-bCH" secondAttribute="trailing" id="WCA-r1-xb8"/>
                                             <constraint firstItem="bBx-8i-VYu" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leadingMargin" id="iTr-Et-aEj"/>
                                             <constraint firstItem="VNy-OL-QuV" firstAttribute="top" secondItem="iBC-2t-bCH" secondAttribute="bottom" constant="5" id="icP-S1-SJ9"/>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="tXx-Eu-K5M" secondAttribute="trailing" id="jVU-mG-g4q"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="tXx-Eu-K5M" secondAttribute="trailing" id="jVU-mG-g4q"/>
                                             <constraint firstAttribute="bottom" secondItem="zjc-pu-VIe" secondAttribute="bottom" id="sbk-ka-xkU"/>
                                             <constraint firstItem="bBx-8i-VYu" firstAttribute="top" secondItem="VNy-OL-QuV" secondAttribute="bottom" constant="10" id="tf2-aQ-LJL"/>
                                             <constraint firstItem="VNy-OL-QuV" firstAttribute="leading" secondItem="Hht-Me-0T0" secondAttribute="leadingMargin" id="zcd-35-Pjj"/>
