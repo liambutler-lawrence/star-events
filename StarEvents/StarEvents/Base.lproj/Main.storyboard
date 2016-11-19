@@ -226,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="1294" y="-233"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Event Navigation Controller-->
         <scene sceneID="7iX-fz-qwD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YeK-ck-XnU" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YeK-ck-XnU" customClass="EventNavigationController" customModule="StarEvents" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UDw-mV-Dhk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
