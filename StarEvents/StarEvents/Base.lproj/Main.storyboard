@@ -191,6 +191,9 @@
                                         <variation key="widthClass=regular" constant="-100"/>
                                     </constraint>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="tBi-O6-JWz" id="a6E-eR-k4m"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

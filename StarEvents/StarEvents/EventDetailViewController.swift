@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController {
+class EventDetailViewController: UIViewController, UIScrollViewDelegate {
     
     weak var event: StarEvent!
     
@@ -30,6 +30,28 @@ class EventDetailViewController: UIViewController {
         
         loadEventBody()
         loadHeaderImage()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        headerImageView.layer.mask?.frame = headerImageView.layer.frame
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    private var previousScrollViewYOffset: CGFloat = 0
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let newScrollViewOffset = scrollView.contentOffset.y
+        
+        if previousScrollViewYOffset < 50 && 50 <= newScrollViewOffset {
+            print("show")
+        } else if newScrollViewOffset <= 50 && 50 < previousScrollViewYOffset {
+            print("hide")
+        }
+        
+        previousScrollViewYOffset = newScrollViewOffset
     }
     
     private func loadHeaderImage() {
