@@ -8,9 +8,19 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController, UIScrollViewDelegate {
+class EventDetailViewController: UIViewController {
+    
+    // MARK: Variables
     
     weak var event: StarEvent!
+    fileprivate var previousScrollViewYOffset: CGFloat = 0
+    
+    @IBOutlet private weak var headerImageView: UIImageView!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var bodyLabel: UILabel!
+    
+    // MARK: View Controller
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,24 +52,9 @@ class EventDetailViewController: UIViewController, UIScrollViewDelegate {
         return .lightContent
     }
     
-    private var previousScrollViewYOffset: CGFloat = 0
+    // MARK: Views
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let newScrollViewOffset = scrollView.contentOffset.y
-        let triggerPoint: CGFloat = 45
-        
-        if previousScrollViewYOffset < newScrollViewOffset
-            && (previousScrollViewYOffset...newScrollViewOffset).contains(triggerPoint) {
-            setHeaderTitle(hidden: false)
-        } else if newScrollViewOffset < previousScrollViewYOffset
-            && (newScrollViewOffset...previousScrollViewYOffset).contains(triggerPoint) {
-            setHeaderTitle(hidden: true)
-        }
-        
-        previousScrollViewYOffset = newScrollViewOffset
-    }
-    
-    private func setHeaderTitle(hidden titleHidden: Bool) {
+    fileprivate func setHeaderTitle(hidden titleHidden: Bool) {
         let fadeAnimation = CATransition()
         fadeAnimation.duration = 0.5
         fadeAnimation.type = kCATransitionFade
@@ -95,10 +90,7 @@ class EventDetailViewController: UIViewController, UIScrollViewDelegate {
         bodyLabel.attributedText = attributedEventBody
     }
     
-    @IBOutlet private weak var headerImageView: UIImageView!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bodyLabel: UILabel!
+    // MARK: Actions
 
     @IBAction private func shareButtonTapped(_ sender: UIBarButtonItem) {
         let sharedText = "\(event.title): \(event.eventDescription)"
@@ -109,5 +101,23 @@ class EventDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         present(shareViewController, animated: true, completion: nil)
+    }
+}
+
+extension EventDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let newScrollViewOffset = scrollView.contentOffset.y
+        let triggerPoint: CGFloat = 45
+        
+        if previousScrollViewYOffset < newScrollViewOffset
+            && (previousScrollViewYOffset...newScrollViewOffset).contains(triggerPoint) {
+            setHeaderTitle(hidden: false)
+        } else if newScrollViewOffset < previousScrollViewYOffset
+            && (newScrollViewOffset...previousScrollViewYOffset).contains(triggerPoint) {
+            setHeaderTitle(hidden: true)
+        }
+        
+        previousScrollViewYOffset = newScrollViewOffset
     }
 }
