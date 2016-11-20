@@ -214,7 +214,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem id="qij-Z4-rZc">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="REP-AG-kI8">
+                                        <barButtonItem key="leftBarButtonItem" title="All Events" id="REP-AG-kI8">
                                             <connections>
                                                 <action selector="backButtonTapped:" destination="tBi-O6-JWz" id="DU2-Za-f0E"/>
                                             </connections>
