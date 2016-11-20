@@ -21,6 +21,7 @@ class EventCollectionViewController: UIViewController {
     fileprivate var originYForSelectedItem: CGFloat?
     
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
     
     fileprivate let fetchedResultsController: NSFetchedResultsController<StarEvent> = {
         let fetchRequest = NSFetchRequest<StarEvent>(entityName: String(describing: StarEvent.self))
@@ -41,6 +42,7 @@ class EventCollectionViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         collectionView.collectionViewLayout.invalidateLayout()
+        navigationBar.invalidateIntrinsicContentSize()
     }
     
     override func viewDidLoad() {

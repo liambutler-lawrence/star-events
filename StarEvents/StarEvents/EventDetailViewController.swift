@@ -41,6 +41,33 @@ class EventDetailViewController: UIViewController {
         navigationBar.shadowImage = UIImage()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        navigationBar.invalidateIntrinsicContentSize()
+        
+        func updateGradientFrame() {
+            headerImageView.layer.mask?.frame.size.width = size.width
+        }
+
+        if view.bounds.width < size.width {
+            // If the width is growing, update the gradient frame before the animation starts
+            updateGradientFrame()
+        } else {
+            // If the width is shrinking, update the gradient frame after the animation completes
+            coordinator.animate(alongsideTransition: { _ in }, completion: { _ in
+                updateGradientFrame()
+            })
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // Cannot set frame when creating layer, but do not want to change frame every time this method is called
+        if headerImageView.layer.mask?.frame == .zero {
+            headerImageView.layer.mask?.frame = headerImageView.bounds
+        }
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -62,7 +89,6 @@ class EventDetailViewController: UIViewController {
         }
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = headerImageView.bounds
         gradientLayer.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
         headerImageView.layer.mask = gradientLayer
     }

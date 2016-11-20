@@ -125,6 +125,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="qZF-7V-rJB" id="fKR-SZ-30e"/>
+                        <outlet property="navigationBar" destination="xDf-iF-jeq" id="gG9-Xy-oKt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZV6-e5-deW" userLabel="First Responder" sceneMemberID="firstResponder"/>
