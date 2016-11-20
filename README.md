@@ -27,5 +27,5 @@ I implemented this challenge requirement using the URL scheme "starevents". The 
 - event (with integer query parameter "id"): Opens the detail screen for a specific event, using the "id" field from the JSON response
 
 Examples:
-- [AllEvents](starevents://events)
-- [EventDetail](starevents://event?q=8)
+- <starevents://events>
+- <starevents://event?q=8>
