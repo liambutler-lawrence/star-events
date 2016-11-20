@@ -10,26 +10,50 @@ import UIKit
 
 class EventDetailViewController: UIViewController {
     
+    // MARK: Variables
+    
+    // This property must be set before viewDidLoad is called
     weak var event: StarEvent!
     
-    override func viewWillAppear(_ animated: Bool) {
-        let navigationBar = navigationController!.navigationBar
-        navigationBar.barTintColor = .clear
-        navigationBar.tintColor = .white
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-    }
+    fileprivate var previousScrollViewYOffset: CGFloat = 0
+    
+    @IBOutlet private weak var navigationBar: UINavigationBar!
+    @IBOutlet private weak var headerImageView: UIImageView!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var bodyLabel: UILabel!
+    
+    @IBOutlet weak var headerImageViewTopConstraint: NSLayoutConstraint!
+    
+    // MARK: View Controller
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         let viewModel = EventViewModel()
         
-        navigationItem.title = event.title
         titleLabel.text = event.title
         dateLabel.text = viewModel.format(event.date)
         
         loadEventBody()
         loadHeaderImage()
+        
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // MARK: Views
+    
+    fileprivate func setHeaderTitle(hidden titleHidden: Bool) {
+        let fadeAnimation = CATransition()
+        fadeAnimation.duration = 0.5
+        fadeAnimation.type = kCATransitionFade
+        navigationBar.layer.add(fadeAnimation, forKey: "fadeTitleTransition")
+        
+        navigationBar.topItem!.title = titleHidden ? "" : event.title
     }
     
     private func loadHeaderImage() {
@@ -59,10 +83,11 @@ class EventDetailViewController: UIViewController {
         bodyLabel.attributedText = attributedEventBody
     }
     
-    @IBOutlet private weak var headerImageView: UIImageView!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bodyLabel: UILabel!
+    // MARK: Actions
+    
+    @IBAction private func backButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 
     @IBAction private func shareButtonTapped(_ sender: UIBarButtonItem) {
         let sharedText = "\(event.title): \(event.eventDescription)"
@@ -73,5 +98,23 @@ class EventDetailViewController: UIViewController {
         }
         
         present(shareViewController, animated: true, completion: nil)
+    }
+}
+
+extension EventDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let newScrollViewOffset = scrollView.contentOffset.y
+        let triggerPoint: CGFloat = 45
+        
+        if previousScrollViewYOffset < newScrollViewOffset
+            && (previousScrollViewYOffset...newScrollViewOffset).contains(triggerPoint) {
+            setHeaderTitle(hidden: false)
+        } else if newScrollViewOffset < previousScrollViewYOffset
+            && (newScrollViewOffset...previousScrollViewYOffset).contains(triggerPoint) {
+            setHeaderTitle(hidden: true)
+        }
+        
+        previousScrollViewYOffset = newScrollViewOffset
     }
 }

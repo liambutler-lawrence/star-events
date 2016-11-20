@@ -11,13 +11,27 @@ import CoreData
 import UIKit
 
 class StarEvent: NSManagedObject {
+    
+    static private let imageCache: NSCache<NSString, UIImage> = {
+        let cache = NSCache<NSString, UIImage>()
+        cache.countLimit = 10
+        return cache
+    }()
+    
+    private var imageCacheID: NSString { return String(describing: id) as NSString }
+    
     var image: UIImage? {
         get {
+            if let cachedImage = StarEvent.imageCache.object(forKey: imageCacheID) {
+                return cachedImage
+            }
+            
             guard
                 let imageData = try? Data(contentsOf: imageURL),
                 let image = UIImage(data: imageData)
                 else { return nil }
             
+            StarEvent.imageCache.setObject(image, forKey: imageCacheID)
             return image
         } set {
             guard
