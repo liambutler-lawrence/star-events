@@ -58,6 +58,13 @@ class EventCollectionViewController: UIViewController {
             else { fatalError("Cannot retrieve fetched events") }
         
         events.isEmpty ? addSpinner() : removeSpinner()
+        
+        let navigationBar = navigationController!.navigationBar
+        navigationBar.barTintColor = .white
+        navigationBar.tintColor = .black
+        navigationBar.setBackgroundImage(nil, for: .default)
+        navigationBar.shadowImage = nil
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
      }
     
     // MARK: Spinner

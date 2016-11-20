@@ -12,7 +12,9 @@ class EventDetailViewController: UIViewController {
     
     // MARK: Variables
     
+    // This property must be set before viewDidLoad is called
     weak var event: StarEvent!
+    
     fileprivate var previousScrollViewYOffset: CGFloat = 0
     
     @IBOutlet private weak var headerImageView: UIImageView!
@@ -45,6 +47,7 @@ class EventDetailViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        // Layers do not automatically update when their views' constraints do, so we have to manually update the mask layer's frame
         headerImageView.layer.mask?.frame = headerImageView.layer.frame
     }
     
@@ -58,7 +61,7 @@ class EventDetailViewController: UIViewController {
         let fadeAnimation = CATransition()
         fadeAnimation.duration = 0.5
         fadeAnimation.type = kCATransitionFade
-        navigationController!.navigationBar.layer.add(fadeAnimation, forKey: "fadeTitleTransition")
+        navigationController?.navigationBar.layer.add(fadeAnimation, forKey: "fadeTitleTransition")
         
         self.navigationItem.title = titleHidden ? "" : event.title
     }
