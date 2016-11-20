@@ -42,6 +42,7 @@ class StarEvent: NSManagedObject {
             do {
                 try imageData.write(to: imageURL)
                 imageLastUpdated = Date()
+                StarEvent.imageCache.setObject(newImage, forKey: imageCacheID)
             } catch {
                 print("Image for event with ID \(id) could not be saved")
             }

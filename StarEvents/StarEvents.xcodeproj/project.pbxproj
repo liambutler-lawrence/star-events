@@ -112,10 +112,10 @@
 			children = (
 				0C8DF00E1DDC1502001A1A15 /* CoreDataContext.swift */,
 				0C8DF0031DDBD83F001A1A15 /* Model.xcdatamodeld */,
-				0C8DF00F1DDC1502001A1A15 /* StarEvent+CoreDataClass.swift */,
 				0CBE262C1DDEE98A0052FC6C /* EventViewModel.swift */,
 				0CBE262A1DDEBD830052FC6C /* EventDataManager.swift */,
 				0C8DF0101DDC1502001A1A15 /* StarEvent+CoreDataProperties.swift */,
+				0C8DF00F1DDC1502001A1A15 /* StarEvent+CoreDataClass.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
