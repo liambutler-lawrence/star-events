@@ -146,6 +146,7 @@ extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
         
         detailViewController.transitioningDelegate = self
         detailViewController.modalPresentationStyle = .custom
+        detailViewController.modalPresentationCapturesStatusBarAppearance = true
         
         present(detailViewController, animated: true)
     }

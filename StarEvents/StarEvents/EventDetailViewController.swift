@@ -62,6 +62,8 @@ class EventDetailViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
         // Cannot set frame when creating layer, but do not want to change frame every time this method is called
         if headerImageView.layer.mask?.frame == .zero {
             headerImageView.layer.mask?.frame = headerImageView.bounds
