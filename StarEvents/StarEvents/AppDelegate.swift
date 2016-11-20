@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,5 +39,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        guard
+            let collectionViewController = window?.rootViewController as? EventCollectionViewController,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            components.scheme == "starevents",
+            let host = components.host
+            else { return false }
+        
+        switch host {
+        case "events":
+            guard let collectionViewController = window?.rootViewController as? EventCollectionViewController
+                else { return false }
+            
+            // Dismiss currently presented detail view controller, if any
+            collectionViewController.dismiss(animated: false)
+            return true
+            
+        case "event":
+            guard
+                let query = components.queryItems?.first,
+                query.name == "id",
+                let eventID = query.value
+                else { return false }
+            
+            // Dismiss currently presented detail view controller, if any
+            collectionViewController.dismiss(animated: false)
+            
+            // Retrieve requested event from Core Data
+            let fetchRequest = NSFetchRequest<StarEvent>(entityName: String(describing: StarEvent.self))
+            fetchRequest.predicate = NSPredicate(format: "id = %@", eventID)
+            
+            guard
+                let events = try? CoreDataContext.shared.fetch(fetchRequest),
+                let event = events.first
+                else { return false }
+            
+            collectionViewController.presentDetailViewController(for: event, animated: false)
+            return true
+            
+        default:
+            return false
+        }
     }
 }

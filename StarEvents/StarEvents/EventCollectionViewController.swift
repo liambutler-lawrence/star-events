@@ -94,6 +94,23 @@ class EventCollectionViewController: UIViewController {
         spinner.stopAnimating()
         spinner.removeFromSuperview()
     }
+    
+    // MARK: Detail View Controller
+    
+    func presentDetailViewController(for event: StarEvent, animated: Bool) {
+        let detailViewControllerIdentifier = String(describing: EventDetailViewController.self)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let detailViewController = mainStoryboard.instantiateViewController(withIdentifier: detailViewControllerIdentifier) as? EventDetailViewController
+            else { fatalError("Could not instantiate \(EventDetailViewController.self)") }
+        detailViewController.event = event
+        
+        detailViewController.transitioningDelegate = self
+        detailViewController.modalPresentationStyle = .custom
+        detailViewController.modalPresentationCapturesStatusBarAppearance = true
+        
+        present(detailViewController, animated: animated)
+    }
 }
 
 extension EventCollectionViewController: UICollectionViewDataSource {
@@ -133,22 +150,11 @@ extension EventCollectionViewController: UICollectionViewDelegateFlowLayout {
         guard let events = fetchedResultsController.fetchedObjects
             else { fatalError("Cannot retrieve fetched event at index \(indexPath.item)") }
         
-        let detailViewControllerIdentifier = String(describing: EventDetailViewController.self)
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let detailViewController = mainStoryboard.instantiateViewController(withIdentifier: detailViewControllerIdentifier) as? EventDetailViewController
-            else { fatalError("Could not instantiate \(EventCollectionViewCell.self)") }
-        detailViewController.event = events[indexPath.item]
-        
         guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath)?.frame
             else { fatalError("Could not retrieve cell layout attributes for event at index \(indexPath.item)") }
         originYForSelectedItem = collectionView.convert(cellFrame, to: view).origin.y
         
-        detailViewController.transitioningDelegate = self
-        detailViewController.modalPresentationStyle = .custom
-        detailViewController.modalPresentationCapturesStatusBarAppearance = true
-        
-        present(detailViewController, animated: true)
+        presentDetailViewController(for: events[indexPath.item], animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
