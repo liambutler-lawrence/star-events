@@ -132,17 +132,17 @@ class EventDetailViewController: UIViewController {
 extension EventDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let newScrollViewOffset = scrollView.contentOffset.y
+        let newScrollViewYOffset = scrollView.contentOffset.y
         let triggerPoint: CGFloat = 45
         
-        if previousScrollViewYOffset < newScrollViewOffset
-            && (previousScrollViewYOffset...newScrollViewOffset).contains(triggerPoint) {
+        if previousScrollViewYOffset < newScrollViewYOffset
+            && (previousScrollViewYOffset..<newScrollViewYOffset).contains(triggerPoint) {
             setHeaderTitle(hidden: false)
-        } else if newScrollViewOffset < previousScrollViewYOffset
-            && (newScrollViewOffset...previousScrollViewYOffset).contains(triggerPoint) {
+        } else if newScrollViewYOffset < previousScrollViewYOffset
+            && (newScrollViewYOffset..<previousScrollViewYOffset).contains(triggerPoint) {
             setHeaderTitle(hidden: true)
         }
         
-        previousScrollViewYOffset = newScrollViewOffset
+        previousScrollViewYOffset = newScrollViewYOffset
     }
 }
