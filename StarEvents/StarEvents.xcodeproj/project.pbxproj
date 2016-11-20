@@ -20,7 +20,6 @@
 		0C8DF0131DDC1502001A1A15 /* StarEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DF0101DDC1502001A1A15 /* StarEvent+CoreDataProperties.swift */; };
 		0CBE262B1DDEBD830052FC6C /* EventDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBE262A1DDEBD830052FC6C /* EventDataManager.swift */; };
 		0CBE262D1DDEE98A0052FC6C /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBE262C1DDEE98A0052FC6C /* EventViewModel.swift */; };
-		0CBE26721DE10FB70052FC6C /* EventNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBE26711DE10FB70052FC6C /* EventNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		0C8DF0101DDC1502001A1A15 /* StarEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StarEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0CBE262A1DDEBD830052FC6C /* EventDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDataManager.swift; sourceTree = "<group>"; };
 		0CBE262C1DDEE98A0052FC6C /* EventViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
-		0CBE26711DE10FB70052FC6C /* EventNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +81,6 @@
 		0C8DEFFE1DDABFF7001A1A15 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0CBE26711DE10FB70052FC6C /* EventNavigationController.swift */,
 				0C8DEFFA1DDABFA2001A1A15 /* EventCollectionViewController.swift */,
 				0C8DEFFC1DDABFAB001A1A15 /* EventDetailViewController.swift */,
 			);
@@ -205,7 +202,6 @@
 				0C8DF0131DDC1502001A1A15 /* StarEvent+CoreDataProperties.swift in Sources */,
 				0C8DF0111DDC1502001A1A15 /* CoreDataContext.swift in Sources */,
 				0C8DEFFB1DDABFA2001A1A15 /* EventCollectionViewController.swift in Sources */,
-				0CBE26721DE10FB70052FC6C /* EventNavigationController.swift in Sources */,
 				0C8DF0121DDC1502001A1A15 /* StarEvent+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YeK-ck-XnU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LYV-al-R1t">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -101,13 +101,23 @@
                                     <outlet property="delegate" destination="LYV-al-R1t" id="CLA-1t-9u6"/>
                                 </connections>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDf-iF-jeq">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="StarEvents" id="j2g-kR-EAx"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xDf-iF-jeq" firstAttribute="top" secondItem="aLZ-0l-Zgo" secondAttribute="bottom" id="FJD-Fr-qz3"/>
+                            <constraint firstItem="qZF-7V-rJB" firstAttribute="top" secondItem="xDf-iF-jeq" secondAttribute="bottom" id="M1H-Zn-z15"/>
                             <constraint firstAttribute="trailing" secondItem="qZF-7V-rJB" secondAttribute="trailing" id="SCF-bQ-R81"/>
                             <constraint firstItem="qZF-7V-rJB" firstAttribute="leading" secondItem="ApA-dJ-8og" secondAttribute="leading" id="SOo-Xa-beI"/>
+                            <constraint firstItem="xDf-iF-jeq" firstAttribute="leading" secondItem="ApA-dJ-8og" secondAttribute="leading" id="bQT-Q6-O1V"/>
                             <constraint firstItem="YCS-pG-2aX" firstAttribute="top" secondItem="qZF-7V-rJB" secondAttribute="bottom" id="pw1-Zv-7Jy"/>
-                            <constraint firstItem="qZF-7V-rJB" firstAttribute="top" secondItem="aLZ-0l-Zgo" secondAttribute="bottom" id="v1P-PN-Ey1"/>
+                            <constraint firstAttribute="trailing" secondItem="xDf-iF-jeq" secondAttribute="trailing" id="xmH-KT-cb7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="StarEvents" id="anp-OS-JZP">
@@ -134,13 +144,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="M5d-tV-sdf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="3zW-Bd-wzg"/>
+                                    <constraint firstAttribute="height" constant="225" id="3zW-Bd-wzg"/>
                                 </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-2T-6st">
-                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
+                                <rect key="frame" x="0.0" y="195" width="375" height="428"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-pZ-tZB">
                                         <rect key="frame" x="20" y="0.0" width="335" height="12"/>
@@ -193,54 +203,58 @@
                                     <outlet property="delegate" destination="tBi-O6-JWz" id="a6E-eR-k4m"/>
                                 </connections>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85W-3P-r8S">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem id="qij-Z4-rZc">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="REP-AG-kI8">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="tBi-O6-JWz" id="DU2-Za-f0E"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="mAc-3K-46P">
+                                            <connections>
+                                                <action selector="shareButtonTapped:" destination="tBi-O6-JWz" id="hPr-d0-YQg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="M5d-tV-sdf" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="3fs-Cl-edi"/>
                             <constraint firstItem="oWj-2T-6st" firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="bottom" constant="-30" id="5A6-RI-0Ic"/>
-                            <constraint firstAttribute="top" secondItem="M5d-tV-sdf" secondAttribute="top" id="DKh-uY-2fz"/>
                             <constraint firstAttribute="trailing" secondItem="oWj-2T-6st" secondAttribute="trailing" id="PnM-mM-aga"/>
                             <constraint firstAttribute="trailing" secondItem="M5d-tV-sdf" secondAttribute="trailing" id="XY4-Xr-Gyl"/>
-                            <constraint firstItem="KFs-vg-7oa" firstAttribute="top" secondItem="oWj-2T-6st" secondAttribute="bottom" id="a7k-A6-Vmg"/>
+                            <constraint firstItem="KFs-vg-7oa" firstAttribute="top" secondItem="oWj-2T-6st" secondAttribute="bottom" priority="750" id="a7k-A6-Vmg"/>
                             <constraint firstItem="oWj-2T-6st" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="gku-cj-Jga"/>
+                            <constraint firstAttribute="trailing" secondItem="85W-3P-r8S" secondAttribute="trailing" id="jpA-lr-7IQ"/>
+                            <constraint firstItem="85W-3P-r8S" firstAttribute="top" secondItem="hto-dI-Ya4" secondAttribute="bottom" id="nP9-2O-vvx"/>
+                            <constraint firstItem="M5d-tV-sdf" firstAttribute="top" secondItem="V0C-Gr-Dmc" secondAttribute="top" id="uvB-uy-4By"/>
+                            <constraint firstItem="85W-3P-r8S" firstAttribute="leading" secondItem="V0C-Gr-Dmc" secondAttribute="leading" id="yfZ-g7-u9m"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gJC-kv-R6z">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="mAc-3K-46P">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="shareButtonTapped:" destination="tBi-O6-JWz" id="hPr-d0-YQg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bodyLabel" destination="lJc-1Q-cKJ" id="gfj-y5-OcK"/>
                         <outlet property="dateLabel" destination="ylU-pZ-tZB" id="qxp-Nu-jd5"/>
                         <outlet property="headerImageView" destination="M5d-tV-sdf" id="GdB-Iy-y8E"/>
+                        <outlet property="headerImageViewTopConstraint" destination="uvB-uy-4By" id="Msg-OF-lVO"/>
+                        <outlet property="navigationBar" destination="85W-3P-r8S" id="NLy-I7-GFA"/>
                         <outlet property="titleLabel" destination="bhi-Sz-WdC" id="TD6-nF-Xdq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fx9-le-7f3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1294" y="-233"/>
-        </scene>
-        <!--Event Navigation Controller-->
-        <scene sceneID="7iX-fz-qwD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YeK-ck-XnU" customClass="EventNavigationController" customModule="StarEvents" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UDw-mV-Dhk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="LYV-al-R1t" kind="relationship" relationship="rootViewController" id="o6g-iS-Bi4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NU6-vG-zMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-460" y="-233"/>
         </scene>
     </scenes>
     <resources>

@@ -17,23 +17,15 @@ class EventDetailViewController: UIViewController {
     
     fileprivate var previousScrollViewYOffset: CGFloat = 0
     
+    @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
     
-    // MARK: View Controller
+    @IBOutlet weak var headerImageViewTopConstraint: NSLayoutConstraint!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let navigationBar = navigationController!.navigationBar
-        navigationBar.barTintColor = .clear
-        navigationBar.tintColor = .white
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-    }
+    // MARK: View Controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +36,9 @@ class EventDetailViewController: UIViewController {
         
         loadEventBody()
         loadHeaderImage()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        // Layers do not automatically update when their views' constraints do, so we have to manually update the mask layer's frame
-        headerImageView.layer.mask?.frame = headerImageView.layer.frame
+        
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -61,9 +51,9 @@ class EventDetailViewController: UIViewController {
         let fadeAnimation = CATransition()
         fadeAnimation.duration = 0.5
         fadeAnimation.type = kCATransitionFade
-        navigationController?.navigationBar.layer.add(fadeAnimation, forKey: "fadeTitleTransition")
+        navigationBar.layer.add(fadeAnimation, forKey: "fadeTitleTransition")
         
-        self.navigationItem.title = titleHidden ? "" : event.title
+        navigationBar.topItem!.title = titleHidden ? "" : event.title
     }
     
     private func loadHeaderImage() {
@@ -94,6 +84,10 @@ class EventDetailViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @IBAction private func backButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 
     @IBAction private func shareButtonTapped(_ sender: UIBarButtonItem) {
         let sharedText = "\(event.title): \(event.eventDescription)"
