@@ -9,11 +9,11 @@ No specification was made for the difference between the timestamp and date fiel
 
 ## Persistence
 
-I am using Core Data to persist the events retrieved from the JSON service. This is preferable over simpler solutions such as NSUserDefaults or plist due to the "object" structure defined in the JSON. In addition, Core Data allows the use of NSFetchedResultsController, which encapsulates collection view data source logic, including update notifications. On subsequent launches of the app (after data has been persisted), the saved data is shown to the user with full interaction capability.
+I am using Core Data to persist the events retrieved from the JSON service. This is preferable over simpler solutions such as NSUserDefaults or plist due to the "object array" structure defined in the JSON. In addition, Core Data allows the use of NSFetchedResultsController, which encapsulates collection view data source logic, including update notifications. 
 
 Since it is not efficient to store raw images in Core Data, I am saving the event images to the filesystem using that event's "id" field from the JSON response. However, it is still inefficient to read from the filesystem every time the collection view delegate methods are called. Therefore, I am using a shared NSCache object to keep the images in memory, which improves scrolling fluidity in the list screen.
 
-If a successful service call is made, the persisted data is overwritten and the UI updated. 
+On subsequent launches of the app (after data has been persisted), the saved data is shown immediately to the user with full interaction capability. If a successful service call is made, the persisted data is overwritten and the UI updated. 
 
 ## Animations
 
@@ -22,10 +22,10 @@ If a successful service call is made, the persisted data is overwritten and the 
 
 ## Deep Linking
 
-I implemented this challenge requirement using the URL scheme "starevents". The following hostnames are allowed:
+I implemented this challenge requirement using the URL scheme "starevents". The following hostnames are supported:
 - events: Opens the list of events
 - event (with integer query parameter "id"): Opens the detail screen for a specific event, using the "id" field from the JSON response
 
 Examples:
 - starevents://events
-- starevents://event?q=8
+- starevents://event?id=8
